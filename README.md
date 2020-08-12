@@ -1,4 +1,6 @@
 [FFmpeg-Android-Java](http://writingminds.github.io/ffmpeg-android-java/) [![Build Status](https://travis-ci.org/hiteshsondhi88/ffmpeg-android-java.svg?branch=master)](https://travis-ci.org/hiteshsondhi88/ffmpeg-android-java) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FFmpeg--Android--Java-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/931)
+
+This fork contaings only changes in FFmpeg.java. the costructor was private and it was using application context which used to have trouble with locale changing. I've made that public and limited usage of application context to singleton instance only and added a method to nullify the singleton object if you want to recreate that.
 ==============
 
 [![Join the chat at https://gitter.im/hiteshsondhi88/ffmpeg-android-java](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hiteshsondhi88/ffmpeg-android-java?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
