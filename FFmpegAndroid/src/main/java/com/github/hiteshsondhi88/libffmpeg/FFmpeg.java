@@ -21,16 +21,22 @@ public class FFmpeg implements FFmpegInterface {
 
     private static FFmpeg instance = null;
 
-    private FFmpeg(Context context) {
-        this.context = context.getApplicationContext();
+    public FFmpeg(Context context) {
+        this.context = context;
         Log.setDEBUG(Util.isDebug(this.context));
     }
 
     public static FFmpeg getInstance(Context context) {
         if (instance == null) {
-            instance = new FFmpeg(context);
+            instance = new FFmpeg(context.getApplicationContext());
         }
         return instance;
+    }
+
+    public void clearSingleton()
+    {
+        instance.killRunningProcesses();
+        instance = null;
     }
 
     @Override
