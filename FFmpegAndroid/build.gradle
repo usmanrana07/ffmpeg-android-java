@@ -1,11 +1,26 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
 
-// This is the library version used when deploying the artifact
-version = VERSION_NAME
+ext {
+    publishedGroupId = 'ilsa.ffmpeg'
+    libraryName = 'Android FFmpeg'
+    libraryVersion = '3.3.5'
 
-android {
+    libraryDescription = 'FFmpeg/FFprobe compiled for Android. Execute FFmpeg and FFprobe commands with ease in your Android project. Default Constructor doesn\'t use application context. So, no harm to your locale change.'
+
+    siteUrl = 'https://github.com/usmanrana07/ffmpeg-android-java'
+    gitUrl = 'https://github.com/usmanrana07/ffmpeg-android-java.git'
+
+    developerId = 'ilsa'
+    developerName = 'ilsa'
+    developerEmail = 'usman.rana@ilsainteractive.com'
+
+    licenseName = 'GNU General Public License v3.0'
+    licenseUrl = 'https://github.com/usmanrana07/ffmpeg-android-java/blob/master/LICENSE.GPLv3'
+    allLicenses = ["GPL-3.0"]
+
+}
+    android {
     compileSdkVersion rootProject.ext.compileSdkVersion as Integer
     buildToolsVersion rootProject.ext.buildToolsVersion as String
 
@@ -30,44 +45,47 @@ android {
     }
 }
 
+// This is the library version used when deploying the artifact
+version = libraryVersion
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     androidTestImplementation 'com.squareup.assertj:assertj-android:1.0.0'
 }
+apply plugin: 'com.github.dcendents.android-maven'
 
-group = GROUP
+group = publishedGroupId
 
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
         pom {
             project {
-                packaging POM_PACKAGING
+                packaging 'aar'
 
                 // Add your description here
-                name 'FFmpeg Android'
-                description = POM_DESCRIPTION
-                url POM_URL
+                name libraryName
+                description = libraryDescription
+                url siteUrl
 
                 // Set your license
                 licenses {
                     license {
-                        name POM_LICENCE_NAME
-                        url POM_LICENCE_URL
+                        name licenseName
+                        url licenseUrl
                     }
                 }
                 developers {
                     developer {
-                        id POM_DEVELOPER_ID
-                        name POM_DEVELOPER_NAME
-                        email 'hitesh@writingminds.com'
+                        id developerId
+                        name developerName
+                        email developerEmail
                     }
                 }
                 scm {
-                    connection POM_SCM_URL
-                    developerConnection POM_SCM_URL
-                    url POM_URL
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
 
                 }
             }
