@@ -33,7 +33,7 @@ public class FFmpeg implements FFmpegInterface {
         return instance;
     }
 
-    public void clearSingleton()
+    public static void clearSingleton()
     {
         instance.killRunningProcesses();
         instance = null;
