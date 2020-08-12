@@ -21,8 +21,8 @@ public class FFmpeg implements FFmpegInterface {
 
     private static FFmpeg instance = null;
 
-    private FFmpeg(Context context) {
-        this.context = context.getApplicationContext();
+    public FFmpeg(Context context) {
+        this.context = context;
         Log.setDEBUG(Util.isDebug(this.context));
     }
 
@@ -33,6 +33,10 @@ public class FFmpeg implements FFmpegInterface {
         return instance;
     }
 
+    public static void clearSingleton(){
+            instance = null;
+    }
+    
     @Override
     public void loadBinary(FFmpegLoadBinaryResponseHandler ffmpegLoadBinaryResponseHandler) throws FFmpegNotSupportedException {
         String cpuArchNameFromAssets = null;
